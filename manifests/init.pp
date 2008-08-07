@@ -1,36 +1,43 @@
-# modules/skeleton/manifests/init.pp - manage skeleton stuff
+# modules/perl/manifests/init.pp - manage perl stuff
 # Copyright (C) 2007 admin@immerda.ch
 # GPLv3
 
-# modules_dir { "skeleton": }
+# modules_dir { "perl": }
 
-class skeleton {
+class perl {
     case $operatingsystem {
-        gentoo: { include skeleton::gentoo }
-        default: { include skeleton::base }
+        gentoo: { include perl::gentoo }
+        default: { include perl::base }
     }
 }
 
-class skeleton::base {
-    package{'skeleton':
+class perl::base {
+    package{'perl':
         ensure => installed,
     }
 
-    service{skeleton:
-        ensure => running,
-        enable => true,
-        #hasstatus => true, #fixme!
-        require => Package[skeleton],
-    }
-
 }
 
-class skeleton::gentoo inherits skeleton::base {
-    Package[skeleton]{
+class perl::gentoo inherits perl::base {
+    Package[perl]{
         category => 'some-category',
     }
 
     #conf.d file if needed
     # needs module gentoo
-    #gentoo::etcconfd { skeleton: require => "Package[skeleton]", notify => "Service[skeleton]"}
+    #gentoo::etcconfd { perl: require => "Package[perl]", notify => "Service[perl]"}
+}
+
+define perl::module () {
+    package { "${name}": ensure => installed }
+    case $operatingsystem {
+        gentoo: { perl::module::gentoo {"${name}": } }
+        # default: { include perl::base }
+    }
+}
+
+define perl::module::gentoo {
+    Package["${name}"]{
+        category => 'some-category',
+    }
 }
