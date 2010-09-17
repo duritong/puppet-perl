@@ -1,5 +1,3 @@
-# manifests/defines.pp
-
 define perl::module (
     $ensure = 'present'
 ) {

@@ -5,16 +5,8 @@
 # Marcel Härry haerry+puppet(at)puzzle.ch
 # Simon Josi josi+puppet(at)puzzle.ch
 
-import 'defines.pp'
-
 class perl {
     case $operatingsystem {
         default: { include perl::base }
-    }
-}
-
-class perl::base {
-    package{'perl':
-        ensure => installed,
     }
 }
