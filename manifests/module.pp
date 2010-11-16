@@ -1,11 +1,7 @@
 define perl::module (
-    $ensure = 'present'
+  $ensure = 'present'
 ) {
-    include perl
-
-    package {"perl-${name}": 
-        ensure => $ensure, 
-        require => Package['perl'],
-    }
+  if $ensure == 'present' { require perl }
+  package {"perl-${name}": ensure => $ensure }
 }
 
