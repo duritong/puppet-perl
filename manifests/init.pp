@@ -6,7 +6,5 @@
 # Simon Josi josi+puppet(at)puzzle.ch
 
 class perl {
-    case $operatingsystem {
-        default: { include perl::base }
-    }
+  include perl::base
 }
