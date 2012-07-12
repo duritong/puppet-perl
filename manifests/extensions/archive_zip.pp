@@ -1,3 +1,10 @@
 class perl::extensions::archive_zip {
-    perl::module{'Archive-Zip': }
+  case $operatingsystem {
+    'debian','ubuntu': {
+        perl::module { 'archive-zip': }
+    }
+    default: {
+      perl::module{'Archive-Zip': }
+    }
+  }
 }
