@@ -1,5 +1,5 @@
 class perl::extensions::crypt_ciphersaber {
 
-  perl::module { 'crypt-siphersaber': }
+  perl::module { 'crypt-ciphersaber': }
 
 }
