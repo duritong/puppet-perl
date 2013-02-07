@@ -1,4 +1,4 @@
 # Crypt-SSLeay
-class perl::extensions::cyrus_ssleay {
+class perl::extensions::crypt_ssleay {
   perl::module{'Crypt-SSLeay': }
 }
