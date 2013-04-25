@@ -1,4 +1,4 @@
-class perl::extensions:libwww {
+class perl::extensions::libwww {
 
   perl::module { 'www': }
 
